@@ -12,7 +12,7 @@ header={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.
 pattern=re.compile('https.*?\.jpg')
 opt = webdriver.ChromeOptions()
 opt.set_headless()
-driver=webdriver.Chrome(options=opt)   #设置无头模式
+driver=webdriver.Chrome(options=opt)   #设置无头模式    
 
 list_zhihu=['https://www.zhihu.com/question/35931586',  # 身材好是一种怎样的体验？
             'https://www.zhihu.com/question/35931586',  # 你的日常搭配是什么样子？
@@ -66,6 +66,15 @@ def excute(times):
                 print("第"+str(i)+"页正常加载")
     except:
         print('正常运行')
+        for i in range(times):
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            try:
+                driver.find_element_by_xpath("/html/body/div[1]/div/main/div/div[2]/div[1]/div/div[3]/a").click()  #显示更多内容按钮
+                print("点击按钮成功")
+                print("第"+str(i)+"页正常加载")
+                time.sleep(1)
+            except:
+                print("第"+str(i)+"页正常加载")
 
 def download(number):
     t=1
@@ -85,26 +94,16 @@ def download(number):
         open('E:\learning\其它\p\summer learning\{0}\{1}.jpg'.format(list_title[int(number)],str(t)), 'wb').write(r.content)
         print('第'+str(t)+"个照片下载成功")
         t=t+1
-def menu_pool(number):                          #多线程函数
-    driver.get(list_zhihu[int(number)])
-    page=5
-    excute(int(page))
-    html=driver.page_source
-    soup=BeautifulSoup(html,'html.parser')
-    data=soup.find_all('noscript')
-    for j in data:
-        k=pattern.findall(str(j))
-        url.append(k[0])
-    download(number)
-    print(list_zhihu[int(number)]+"下载完成!")
+
+menu()
+ 
 
 
-
-list_number=[0,1,2]          
-pool=threadpool.ThreadPool(3)
+""" list_number=[0,1,2,3,4]          
+pool=threadpool.ThreadPool(5)
 reque = threadpool.makeRequests(menu_pool,list_number)
 [pool.putRequest(req) for req in reque]
-pool.wait()
+pool.wait() """     #无法完成多线程
 
 
 
