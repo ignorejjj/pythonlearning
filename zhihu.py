@@ -20,18 +20,20 @@ list_zhihu=['https://www.zhihu.com/question/35931586',  # 身材好是一种怎�
             'https://www.zhihu.com/question/28481779',  # 腿长是一种什么体验？
             'https://www.zhihu.com/question/19671417',  # 拍照时怎样摆姿势好看？
             'https://www.zhihu.com/question/20196263',  # 女性胸部过大会有哪些困扰与不便？
-            'https://www.zhihu.com/question/46458423']  # 短发女孩要怎么拍照才性感？
+            'https://www.zhihu.com/question/46458423',  # 短发女孩要怎么拍照才性感？
+            'https://www.zhihu.com/question/313825759']  # 拥有一个身材火辣的女朋友是什么体验?
 list_title=["身材好是一种怎样的体验？",
             "你的日常搭配是什么样子？",
             "女生腿好看胸平是一种什么体验？",
             "腿长是一种什么体验？",
             "拍照时怎样摆姿势好看？",
             "女性胸部过大会有哪些困扰与不便？",
-            "短发女孩要怎么拍照才性感？"]
+            "短发女孩要怎么拍照才性感？",
+            "拥有一个身材火辣的女朋友是什么体验？"]
 url=[]          #保存图片url
 
 def menu():
-    for i in range(1,8):
+    for i in range(1,9):
         print(str(i)+"."+list_title[i-1])
     print("请输入要下载的序号:",end='')
     number=input()
